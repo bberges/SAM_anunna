@@ -26,8 +26,9 @@ log.file = shQuote(fs::path_expand(log.file))
 #SBATCH --mail-user=benoit.berges@wur.nl
 
 #SBATCH --job-name=<%= job.name %>
-#SBATCH --output=<%= log.file %>
+
 #SBATCH --error=<%= log.file %>
+#SBATCH --output=<%= log.file %>
 #SBATCH --time=<%= ceiling(resources$walltime / 60) %>
 #SBATCH --ntasks=1
 #SBATCH --cpus-per-task=<%= resources$ncpus %>
