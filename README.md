@@ -30,7 +30,9 @@ The number of nodes is controlled in the script with the future package (without
 I get the following performances
 
 On my windows machine on a single worker: 71.12 sec
+
 On my windows machine with 10 workers: 43.61 sec
+
 With 10 workers using the future package (example1_slurm.sh): 282.909 sec
 
 With the future.batchtools package, I did not manage to start the R script with a bash script. Though, I am able to run example1_SAMfit_futureBatchtools.R in an R session as follows:
