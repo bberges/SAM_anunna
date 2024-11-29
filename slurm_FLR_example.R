@@ -16,7 +16,11 @@
 # https://future.batchtools.futureverse.org/
 # https://dofuture.futureverse.org/
 
+library(doFuture)
 library(future.batchtools)
+library(FLCore)
+library(FLSAM)
+library(stockassessment)
 
 # SETUP slurm plan: assign time and memory per process
 
@@ -42,12 +46,12 @@ plan(multicore, workers=10)
 
 # USE doFuture
 
-library("doFuture")
+
 registerDoFuture()
 
 # CODE to be executed
 
-library(FLCore)
+
 
 data(nsher)
 
