@@ -16,11 +16,11 @@
 # https://future.batchtools.futureverse.org/
 # https://dofuture.futureverse.org/
 
-library(doFuture)
-library(future.batchtools)
 library(FLCore)
 library(FLSAM)
 library(stockassessment)
+library(doFuture)
+library(future.batchtools)
 
 # SETUP slurm plan: assign time and memory per process
 
