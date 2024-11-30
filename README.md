@@ -18,39 +18,38 @@ Paralellization is done with the future package (https://cran.r-project.org/web/
 
 In my study, I need to run the model fit 1000x25 times. The running of the model is extremely slow on anunna so far. I need to improve the optimization substantially for production.
 
-### Example 1 ran with future: example1_slurm.sh, example1_SAMfit.R
-The example runs the stock assessment model 10 times.
+Here the example runs the stock assessment model 10 times, trying to optimize the running time. The task is ran over 10 workers.
 
-One can run the code on a normal R session:
+On my windows machine, running the script in a normal R session with and without paralellization, I get the following performances:
 
-- [ ] Set your working directory to the repo root
-- [ ] Start R
-- [ ] source('./example1_SAM fit.R')
+On a single worker: 71.12 sec
 
-The number of nodes is controlled in the script with the future package (without future.batchtools): plan(multicore, workers=10).
+With 10 workers: 43.61 sec
 
-I get the following performances
+### Example 1 ran with future from batch file: example1_slurm.sh coupled with example1_SAMfit.R
 
-On my windows machine on a single worker: 71.12 sec
+Here the number of nodes is specified in the bash script (as number of workers --cpus-per-task=10) and the R script (as number of workers, plan(multicore, workers=10)). 
 
-On my windows machine with 10 workers: 43.61 sec
+- [ ] sbatch example1_slurm.sh
 
-With 10 workers using the future package (example1_slurm.sh): 282.909 sec
+Performance using the future package (example1_slurm.sh): 282.909 sec
 
 ### Example 1 ran with future.batchtools: example1_SAMfit_futureBatchtools.R coupled with slurm.tmpl
 
-With the future.batchtools package, I did not manage to start the R script with a bash script. Though, I am able to run example1_SAMfit_futureBatchtools.R in an R session as follows:
+With the future.batchtools package, I did not manage to start the R script with a bash script. Instead, I am run example1_SAMfit_futureBatchtools.R which is linked with slurm.tmpl in an R session as follows:
 
 - [ ] Set your working directory to the repo root
 - [ ] Start R
 - [ ] source('./example1_SAMfit_futureBatchtools.R')
 
-When doing that, the running time is: 187.4 sec
+Performance using future.batchtools: 187.4 sec
 
 ### Example 1 ran with future.batchtools using GPU: example1_SAMfit_futureBatchtools_GPU.R coupled with slurm_GPU.tmpl
+
+This example is similar to the previous one but adding the use of GPU.
 
 - [ ] Set your working directory to the repo root
 - [ ] Start R
 - [ ] source('./example1_SAMfit_futureBatchtools_GPU.R')
 
-When doing that, the running time is: 499.9 sec
+Performance using future.batchtools with GPU: 499.9 sec
