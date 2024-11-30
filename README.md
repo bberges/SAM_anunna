@@ -16,7 +16,9 @@ Paralellization is done with the future package (https://cran.r-project.org/web/
 
 ## Description of the problem
 
-### Example 1: example1_slurm.sh, example1_SAMfit.R
+In my study, I need to run the model fit 1000x25 times. The running of the model is extremely slow on anunna so far. I need to improve the optimization substantially for production.
+
+### Example 1 ran with future: example1_slurm.sh, example1_SAMfit.R
 The example runs the stock assessment model 10 times.
 
 One can run the code on a normal R session:
@@ -35,11 +37,20 @@ On my windows machine with 10 workers: 43.61 sec
 
 With 10 workers using the future package (example1_slurm.sh): 282.909 sec
 
+### Example 1 ran with future.batchtools: example1_SAMfit_futureBatchtools.R coupled with slurm.tmpl
+
 With the future.batchtools package, I did not manage to start the R script with a bash script. Though, I am able to run example1_SAMfit_futureBatchtools.R in an R session as follows:
 
 - [ ] Set your working directory to the repo root
 - [ ] Start R
 - [ ] source('./example1_SAMfit_futureBatchtools.R')
+
 When doing that, the running time is: 187.4 sec
 
-In my study, I need to run the model fit 1000x25 times so I need to improve the optimization substantially for production.
+### Example 1 ran with future.batchtools using GPU: example1_SAMfit_futureBatchtools_GPU.R coupled with slurm_GPU.tmpl
+
+- [ ] Set your working directory to the repo root
+- [ ] Start R
+- [ ] source('./example1_SAMfit_futureBatchtools_GPU.R')
+
+When doing that, the running time is: 499.9 sec
